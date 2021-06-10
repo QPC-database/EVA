@@ -6,4 +6,5 @@ target_sources(eva PRIVATE
     program.cpp
     attribute_list.cpp
     attributes.cpp
+    constant_value.cpp
 )
