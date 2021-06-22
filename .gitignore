@@ -1,4 +1,6 @@
-/.*/
+# IDE directories
+.vscode/
+
 /build/
 /dist/
 eva.egg-info/
@@ -17,3 +19,4 @@ CMakeFiles/
 *.a
 *.so
 *.whl
+_deps

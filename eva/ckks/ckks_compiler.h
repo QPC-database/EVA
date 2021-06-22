@@ -19,6 +19,7 @@
 #include "eva/ckks/parameter_checker.h"
 #include "eva/ckks/scales_checker.h"
 #include "eva/ckks/seal_lowering.h"
+#include "eva/common/common_subexpression_elimination.h"
 #include "eva/common/constant_folder.h"
 #include "eva/common/program_traversal.h"
 #include "eva/common/reduction_balancer.h"
@@ -37,6 +38,8 @@ class CKKSCompiler {
                  TermMapOptional<std::uint32_t> &scales) {
     auto programRewrite = ProgramTraversal(program);
 
+    log(Verbosity::Debug, "Running CommonSubexpressionEliminator pass");
+    programRewrite.forwardPass(CommonSubexpressionEliminator(program));
     log(Verbosity::Debug, "Running TypeDeducer pass");
     programRewrite.forwardPass(TypeDeducer(program, types));
     log(Verbosity::Debug, "Running ConstantFolder pass");
